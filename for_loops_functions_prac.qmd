@@ -1,0 +1,101 @@
+---
+title: "For Loops and Functions"
+author: "Hailey Veirs"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+
+```
+
+
+
+### For Loops Practice
+
+```{r}
+quarter_splits <- c(1.0, 1.1, 1.2, 1.1, 1.4, 1.5, 1.6, 1.4)
+
+for (i in seq_along(quarter_splits)) {
+  half_time <- quarter_splits[i] + quarter_splits[i+1]
+  print(half_time)
+}
+
+```
+
+### Functions Practice
+Make a function to double the user input
+
+```{r}
+double_this <- function(value) {
+  print(2 * value)
+}
+
+double_this(value = 13)
+double_this(24)
+
+double_this(c(2, 4, 12, 7, 5))
+```
+
+Make an exclamation! Asks for a user's name and age,
+and prints/returns an exclamation 
+
+```{r}
+exclaim_name_age <- function(name, age) {
+  print(
+    paste("My name is", name, "and I am", age, "years old!"))
+}
+
+exclaim_name_age(name = "Hailey", age = 22)
+```
+
+Find the ages of animals in human years
+
+```{r}
+animal_age_conversion <- function(animal, human_age) {
+  if (animal == "dog") {
+    print(human_age * 7)
+  } else if (animal == "goat") {
+    print(human_age * 4.7)
+  } else {
+    print("Wrong animal! Try either a dog or a goat.")
+  }
+}
+
+animal_age_conversion("dog", 7)
+animal_age_conversion("elephant", 10)
+animal_age_conversion("goat", 10)
+```
+
+Make a data frame and pull info from it
+
+```{r}
+dog_choice <- data.frame(
+  dog_name = c("Khora", "Teddy", "Waffle", "Banjo"), 
+  food = c("everything", "salmon", "pancakes", "chicken"))
+
+dog_menu <- function(name) {
+  dog_choice_sub <- filter(dog_choice, dog_name == name)
+  print(paste("My name is", dog_choice_sub$dog_name, 
+              "and my favorite food is", dog_choice_sub$food))
+}
+
+dog_menu("Banjo")
+```
+
+Functions meet For loops example
+
+```{r}
+means_over_columns <- function(df) {
+  for (i in seq_along(df)) {
+    col_mean <- mean(df[[i]], na.rm = TRUE)
+    column_name <- colnames(df[i])
+    print(paste("The mean value of", column_name, "is", col_mean))
+  }
+}
+
+means_over_columns(df = mtcars)
+```
+
+
