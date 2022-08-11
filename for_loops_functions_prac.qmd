@@ -10,8 +10,6 @@ library(tidyverse)
 
 ```
 
-
-
 ### For Loops Practice
 
 ```{r}
@@ -25,6 +23,7 @@ for (i in seq_along(quarter_splits)) {
 ```
 
 ### Functions Practice
+
 Make a function to double the user input
 
 ```{r}
@@ -38,8 +37,7 @@ double_this(24)
 double_this(c(2, 4, 12, 7, 5))
 ```
 
-Make an exclamation! Asks for a user's name and age,
-and prints/returns an exclamation 
+Make an exclamation! Asks for a user's name and age, and prints/returns an exclamation
 
 ```{r}
 exclaim_name_age <- function(name, age) {
@@ -98,4 +96,19 @@ means_over_columns <- function(df) {
 means_over_columns(df = mtcars)
 ```
 
+Make a nested loop
 
+```{r}
+coffee <- c("decaf", "french", "mocha", "black")
+size <- c("small", "medium", "venti")
+
+coffee_size <- matrix(nrow = length(size), ncol = length(coffee))
+
+for (i in seq_along(coffee)) {
+  for (j in seq_along(size)) {
+    print(paste("Hi, I want to order a", size[j], coffee[i])) 
+    coffee_combo <- paste(size[j], coffee[i])
+    coffee_size[j,i] <- coffee_combo
+  }
+}
+```
